@@ -3,15 +3,15 @@
 :root {
     --primary-orange: #ffc044;
     --dead-orange: #6C4801;
-    --border-blue: #98A9FF;
+    --blue-border-spade: #98A9FF;
     --white: #FFFFFF;
     --dark: #3b3b3b;
     --black: #000000;
     --about-background-color: #FFF8E4;
 
-    --large-font-size: 2rem;
-    --medium-font-size: 1.125rem;
-    --small-font-size: 1rem;
+    --font-size-large: 2rem;
+    --font-size-medium: 1.125rem;
+    --font-size-small: 1rem;
 }
 
 html{
@@ -23,7 +23,7 @@ html{
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    font-size: var(--small-font-size);
+    font-size: var(--font-size-small);
     color: var(--dark);
 
 }
@@ -43,9 +43,9 @@ html{
 button {
     border: none;
     border-radius: 0.2rem;
+    cursor: pointer;
     padding: 1rem;
     width: fit-content;
-    cursor: pointer;
 }
 
 a{
@@ -57,19 +57,20 @@ a:hover{
 }
 
 .bold-h3{
-    font-size: var(--large-font-size);
+    font-size: var(--font-size-large);
+    background: none;
     font-weight: bold;
     line-height: 2.75rem;
-    background: none;
+    padding-bottom: 10px;
 }
 
 .navbar{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     width: 100%;
-    height: 100px;
+    flex-direction: row;
     padding: 1.5rem 5vw;
+    justify-content: space-between;
+    height: 100px;
 }
 
 .navbar-container{
@@ -85,16 +86,16 @@ a:hover{
 }
 
 .navbar-item{
+    color: var(--black);
     padding: 1rem 1.5rem;
     white-space: nowrap;
-    color: var(--black);
 }
 
 .grid {
     display: grid;
+    column-gap: 20px;
     grid-template-columns: repeat(12,1fr);
     margin: 0px 100px;
-    column-gap: 20px;
 }
 
 .hero-section{
@@ -103,19 +104,19 @@ a:hover{
 }
 
 .hero-main-image{
+    height: 100%;
     grid-column: 7/12;
     width: 100%;
-    height: 100%;
 }
 
 .hero-login{
+    row-gap: 2rem;
     grid-column: 2/6;
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    justify-content: center;
     align-items: stretch;
     align-self: center;
-    justify-content: center;
 }
 
 .hero-login button{
@@ -124,10 +125,10 @@ a:hover{
 
 .hero-main-text{
     background-image: url(./assets/dots\ hero\ section.svg);
-    padding: 2rem 1rem;
+    flex-direction: column;
+    padding: 1.9rem 1rem;
     background-repeat: no-repeat;
     display: flex;
-    flex-direction: column;
     overflow: auto;
 }
 
@@ -137,25 +138,25 @@ a:hover{
 
 .hero-login-links{
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     padding-top: 0.4rem;
+    flex-direction: row;
 }
 
 input{
-    border: 1px solid var(--border-blue);
+    border: 1px solid var(--blue-border-spade);
     padding: 1rem;
     width: 100%;
     border-radius: 4px;
 }
 
 .about-section{
+    align-items: center;
     min-height: 100vh;
     height: auto;
-    padding: 100px 0;
-    align-items: center;
-    grid-template-rows: 2.5fr repeat(6,1fr);
     row-gap: 20px;
+    padding: 100px 0;
+    grid-template-rows: 2.5fr repeat(6,1fr);
 }
 
 .about-main-text{
@@ -165,29 +166,29 @@ input{
 
     background-image: url(./assets/dots\ about\ section.svg);
     background-repeat: no-repeat;
+    margin-bottom: 30px;
     background-position: right top;
     padding: 2rem 1rem 3rem 4rem;
     overflow: auto;
-    margin-bottom: 30px;
 }
 
 .about-container{
     grid-area: 2/1/8/13;
     background-color: var(--about-background-color);
+    border-radius: 0.5rem;
     column-gap: 20px;
     row-gap: 30px;
     grid-template-rows: repeat(8,1fr);
     margin: 0;
-    border-radius: 0.5rem;
 }
 
 .about-card {
     display: flex;
     flex-direction: column;
+    border-radius: 1rem;
     justify-content: center;
     background-color: var(--white);
-    gap: 1.5rem;
-    border-radius: 1rem;
+    gap: 1.4rem;
 }
 
 .about-card p {
@@ -232,13 +233,13 @@ input{
 }
 
 .contact-contents h3{
-    font-size: var(--large-font-size);
+    font-size: var(--font-size-large);
 }
 
 .contact-images {
     grid-column: 5/13;
     display: grid;
-    column-gap: 20px;
+    column-gap: 22px;
     grid-template-columns: repeat(8, 1fr);
     position: relative;
     padding: 11vw 0;
@@ -247,9 +248,9 @@ input{
 .contact-images img {
     width: 100%;
     height: 45vh;
-    object-fit: cover;
     border-radius: var(--outer-radius);
     box-shadow: -0.4rem 0.6rem 0.7rem rgba(0, 0, 0, 0.15);
+    object-fit: cover;
     z-index: 2;
 }
 
@@ -267,19 +268,18 @@ input{
 }
 
 .contact-images a {
-    color: var(--copy-blue);
     background-color: var(--about-background-color);
-    display: flex;
     flex-direction: row;
     align-items: center;
+    display: flex;
     row-gap: 1rem;
     z-index: 2;
 }
 
 .contact-images-square {
+    background-color: var(--about-background-color);
     position: absolute;
     bottom: 15%;
-    background-color: var(--about-background-color);
     height: 40%;
     width: 100%;
     z-index: 1;
