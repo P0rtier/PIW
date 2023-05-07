@@ -1,0 +1,10 @@
+.real-estate-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+}
+
+.real-estate-container__contents {
+  display: flex;
+  flex-direction: column;
+}
