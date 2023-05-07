@@ -1,4 +1,28 @@
 .navbar {
-  gap: 20px;
+  background-color: #0c647a;
+}
+
+.navbar-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo {
   margin-left: 30px;
+}
+
+.button {
+  margin-right: 20px;
+}
+
+.icon-button {
+  border: none;
+  background-color: #0c647a;
+  transition: 0.3s;
+}
+
+.icon-button:hover {
+  color: white;
 }

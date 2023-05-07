@@ -4,7 +4,8 @@ import Navbar from "./components/navbar/navbar";
 import Home from "./pages/home/home";
 import AddEstatePage from "./pages/addPage/addEstatePage";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import React, { useState } from "react";
+import BookDeatilsPage from "./pages/bookPage/bookDetailsPage";
 
 function App() {
   const realEstateMockData = [
@@ -73,6 +74,8 @@ function App() {
               </>
             }
           />
+
+          <Route path="/book-meeting" element={<BookDeatilsPage />} />
         </Routes>
       </BrowserRouter>
     </div>

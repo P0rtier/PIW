@@ -31,6 +31,7 @@ const AddEstatePage = ({ handler }) => {
       handler(newRealEstate);
       routeChange();
     } else {
+      alert("Form invalid! Please give all neccessary information!");
       console.log("Form invalid!");
     }
   };
