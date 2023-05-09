@@ -1,10 +1,52 @@
-.real-estate-container {
+.flex {
   display: flex;
   flex-direction: row;
-  margin-bottom: 50px;
+  gap: 15px;
 }
 
 .real-estate-container__contents {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.real-estate-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.real-estate-container__image {
+  width: 500px;
+  background-size: cover;
+  background-position: center;
+}
+
+.real-estate-container__contents {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: #1da4c5;
+  width: 100%;
+}
+
+.contents-price {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.contents-bedrooms,
+.contents-location,
+.contents-desc {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.contents-details {
+  margin-top: auto;
+  align-self: center;
 }

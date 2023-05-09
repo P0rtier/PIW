@@ -1,8 +1,31 @@
+.content {
+  grid-column: 1/8;
+}
+
 .filter-container {
-  grid-column: 2/5;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
   padding-bottom: 30px;
+}
+
+.filter-input {
+  border: 2px solid;
+  border-color: #1da4c5;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.filter-select {
+  border: 2px solid;
+  border-color: #1da4c5;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.hero-title {
+  margin-bottom: 50px;
+  color: #198754;
+  font-weight: bold;
 }

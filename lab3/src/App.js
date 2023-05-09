@@ -10,34 +10,34 @@ import BookDeatilsPage from "./pages/bookPage/bookDetailsPage";
 function App() {
   const realEstateMockData = [
     {
-      price: "80000",
+      price: "80000 zł",
       bedrooms: 6,
-      location: "Wroclaw",
-      description: "Bardzo ladny domek na obrzezach Wroclawia",
+      location: "Wrocław",
+      description: "A cozy house on the outskirts of Wrocław",
     },
     {
-      price: "11000",
+      price: "11000 zł",
       bedrooms: 5,
       location: "Leszno",
-      description: "dobra",
+      description: "Great neighborhood and a good school nearby",
     },
     {
-      price: "testPrice3",
+      price: "35000 zł",
       bedrooms: 3,
-      location: "Wroclaw",
-      description: "desc",
+      location: "Kraków",
+      description: "A beautiful building near the center of Krakow",
     },
     {
-      price: "testPrice4",
+      price: "150000 zł",
       bedrooms: 4,
-      location: "Wroclaw",
-      description: "desc",
+      location: "Warszawa",
+      description: "Great neighbourhood",
     },
     {
-      price: "testPrice5",
+      price: "60000 zł",
       bedrooms: 5,
       location: "Wroclaw",
-      description: "desc",
+      description: "Very good place",
     },
   ];
 

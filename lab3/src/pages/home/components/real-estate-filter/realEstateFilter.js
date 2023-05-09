@@ -22,7 +22,8 @@ const RealEstateFilter = ({ realEstateMockData }) => {
     const isPriceMatched =
       filterValues.price === "" || item.price.includes(filterValues.price);
     const isBedroomsMatched =
-      filterValues.bedrooms === "" || item.bedrooms == filterValues.bedrooms;
+      filterValues.bedrooms === "" ||
+      item.bedrooms === parseInt(filterValues.bedrooms);
     const isCityMatched =
       filterValues.city === "" || item.location.includes(filterValues.city);
     const isDescriptionMatched =
@@ -46,12 +47,13 @@ const RealEstateFilter = ({ realEstateMockData }) => {
   });
 
   return (
-    <div>
-      <h1>Currently available Real Estates</h1>
-      <p>Filters</p>
+    <div className="content">
+      <h1 className="hero-title">Currently available Real Estates</h1>
+      <p></p>
       <div className="filter-container">
         <div className="filter-sort">
           <select
+            className="filter-select"
             name="sort"
             value={filterValues.sort}
             onChange={handleFilterChange}
@@ -63,6 +65,7 @@ const RealEstateFilter = ({ realEstateMockData }) => {
         </div>
         <div className="filter-price">
           <input
+            className="filter-input"
             type="text"
             placeholder="Price"
             name="price"
@@ -72,6 +75,7 @@ const RealEstateFilter = ({ realEstateMockData }) => {
         </div>
         <div className="filter-bedrooms">
           <input
+            className="filter-input"
             type="text"
             placeholder="Bedrooms"
             name="bedrooms"
@@ -81,6 +85,7 @@ const RealEstateFilter = ({ realEstateMockData }) => {
         </div>
         <div className="filter-city">
           <input
+            className="filter-input"
             type="text"
             placeholder="City"
             name="city"
@@ -90,6 +95,7 @@ const RealEstateFilter = ({ realEstateMockData }) => {
         </div>
         <div className="filter-desc">
           <input
+            className="filter-input"
             type="text"
             placeholder="Description"
             name="description"

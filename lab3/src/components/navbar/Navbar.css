@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #0c647a;
+  background-color: #1da4c5;
 }
 
 .navbar-content {
@@ -19,10 +19,11 @@
 
 .icon-button {
   border: none;
-  background-color: #0c647a;
+  background-color: #1da4c5;
   transition: 0.3s;
+  color: white;
 }
 
 .icon-button:hover {
-  color: white;
+  color: black;
 }

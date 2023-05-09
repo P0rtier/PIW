@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./home.css";
 import RealEstateFilter from "./components/real-estate-filter/realEstateFilter";
 

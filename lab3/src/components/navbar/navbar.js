@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import logo from "../../assets/img/logo.svg";
-import { Button, InputGroup } from "react-bootstrap";
+import { InputGroup } from "react-bootstrap";
 import { ThemeContext, themes } from "../dark-mode/themeContext";
 import { FaMedapps } from "react-icons/fa";
 
