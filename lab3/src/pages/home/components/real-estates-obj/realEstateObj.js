@@ -17,7 +17,7 @@ const RealEstateObj = ({ price, bedrooms, location, description }) => {
   };
   return (
     <div className="real-estate-container">
-      <img class="real-estate-container__image" src={exampleHouse} alt="" />
+      <img className="real-estate-container__image" src={exampleHouse} alt="" />
       <div className="real-estate-container__contents">
         <div className="flex contents-price">
           <FaDollarSign style={{ marginTop: "7px" }} />

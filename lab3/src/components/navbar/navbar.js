@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="navbar-content">
-        <a class="logo navbar-brand" href="/">
+        <a className="logo navbar-brand" href="/">
           <img src={logo} alt="" />
         </a>
         <InputGroup>

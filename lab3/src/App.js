@@ -60,17 +60,16 @@ function App() {
             path="/"
             element={
               <>
-                <Home realEstateMockData={realEstateData} />
+                <Home realEstateData={realEstateData} />
               </>
             }
           />
 
           <Route
             path="/add-estate"
-            exact={false}
             element={
               <>
-                <AddEstatePage handler={handleNewRealEstateSubmit} />
+                <AddEstatePage addRealEstate={handleNewRealEstateSubmit} />
               </>
             }
           />

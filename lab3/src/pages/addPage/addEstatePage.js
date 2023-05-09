@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./addEstatePage.css";
 
-const AddEstatePage = ({ handler }) => {
+const AddEstatePage = ({ addRealEstate }) => {
   const [city, setCity] = useState("");
   const [price, setPrice] = useState("");
   const [bedrooms, setBedrooms] = useState("");
@@ -23,13 +23,13 @@ const AddEstatePage = ({ handler }) => {
       console.log("Form valid");
 
       const newRealEstate = {
-        price: price,
-        bedrooms: bedrooms,
+        price: `${price} zł`,
+        bedrooms: parseInt(bedrooms),
         location: city,
         description: description,
       };
 
-      handler(newRealEstate);
+      addRealEstate(newRealEstate);
       routeChange();
     } else {
       alert("Form invalid! Please give all neccessary information!");
@@ -40,10 +40,10 @@ const AddEstatePage = ({ handler }) => {
   return (
     <div className="container">
       <div className="container-form">
-        <div class="form-element">
+        <div className="form-element">
           <label htmlFor="form-price">Enter price</label>
           <input
-            type="text"
+            type="number"
             placeholder="Price"
             id="form-price"
             name="price"
@@ -54,7 +54,7 @@ const AddEstatePage = ({ handler }) => {
         <div className="form-element">
           <label htmlFor="form-room">Enter bedrooms</label>
           <input
-            type="text"
+            type="number"
             placeholder="Number of Bedrooms"
             id="form-room"
             name="bedrooms"
