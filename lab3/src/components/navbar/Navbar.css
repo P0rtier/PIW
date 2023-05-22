@@ -3,6 +3,7 @@
 }
 
 .navbar-content {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -26,4 +27,21 @@
 
 .icon-button:hover {
   color: black;
+}
+
+.logout-btn-href {
+  justify-self: flex-end;
+  margin-right: 30px;
+}
+
+.user-dialog {
+  font-size: 25px;
+  font-weight: bold;
+  width: 30rem;
+  flex-wrap: nowrap;
+}
+
+.user-dialog p {
+  margin-bottom: 0;
+  color: white;
 }

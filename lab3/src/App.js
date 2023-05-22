@@ -1,82 +1,85 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/navbar/navbar";
 import Home from "./pages/home/home";
 import AddEstatePage from "./pages/addPage/addEstatePage";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BookDeatilsPage from "./pages/bookPage/bookDetailsPage";
+import { UserProvider } from "./pages/loginPage/UserContext";
+import LoginPage from "./pages/loginPage/loginPage";
+import axios from "axios";
 
 function App() {
-  const realEstateMockData = [
-    {
-      price: "80000 zł",
-      bedrooms: 6,
-      location: "Wrocław",
-      description: "A cozy house on the outskirts of Wrocław",
-    },
-    {
-      price: "11000 zł",
-      bedrooms: 5,
-      location: "Leszno",
-      description: "Great neighborhood and a good school nearby",
-    },
-    {
-      price: "35000 zł",
-      bedrooms: 3,
-      location: "Kraków",
-      description: "A beautiful building near the center of Krakow",
-    },
-    {
-      price: "150000 zł",
-      bedrooms: 4,
-      location: "Warszawa",
-      description: "Great neighbourhood",
-    },
-    {
-      price: "60000 zł",
-      bedrooms: 5,
-      location: "Wroclaw",
-      description: "Very good place",
-    },
-  ];
-
+  const realEstateMockData = [];
   const [realEstateData, setRealEstateData] = useState(realEstateMockData);
+  const [counter, setCounter] = useState(5);
+
+  useEffect(() => {
+    axios
+      .get("/estate_data/estate.json")
+      .then((response) => {
+        setRealEstateData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error occured, stacktrace: ", error);
+      });
+  }, []);
 
   const handleNewRealEstateSubmit = (newRealEstate) => {
     setRealEstateData((prevRealEstateData) => [
       ...prevRealEstateData,
       newRealEstate,
     ]);
+
+    setCounter(counter + 1);
   };
 
   return (
     <div className="App">
-      <Navbar />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <>
-                <Home realEstateData={realEstateData} />
-              </>
-            }
-          />
+      <UserProvider>
+        <Navbar />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/login"
+              element={
+                localStorage.getItem("evilla-user") ? (
+                  <Navigate to="/" />
+                ) : (
+                  <LoginPage />
+                )
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <>
+                  {localStorage.getItem("evilla-user") ? (
+                    <Home realEstateData={realEstateData} />
+                  ) : (
+                    <Navigate to="/login" />
+                  )}
+                </>
+              }
+            />
 
-          <Route
-            path="/add-estate"
-            element={
-              <>
-                <AddEstatePage addRealEstate={handleNewRealEstateSubmit} />
-              </>
-            }
-          />
+            <Route
+              path="/add-estate"
+              element={
+                localStorage.getItem("evilla-user") ? (
+                  <AddEstatePage addRealEstate={handleNewRealEstateSubmit} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
 
-          <Route path="/book-meeting" element={<BookDeatilsPage />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="/book-meeting" element={<BookDeatilsPage />} />
+            <Route path="/home" element={<Navigate to="/" />} />
+          </Routes>
+        </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }
