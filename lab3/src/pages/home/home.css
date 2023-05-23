@@ -5,3 +5,13 @@
   margin-right: 100px;
   margin-top: 30px;
 }
+
+.net-worth {
+  margin-top: 78px;
+  grid-column: 9/13;
+}
+
+.net-worth p {
+  font-size: 25px;
+  font-weight: bold;
+}

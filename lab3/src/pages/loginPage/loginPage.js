@@ -12,7 +12,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
   const routeChange = () => {
-    let path = "/home";
+    let path = "/";
     navigate(path);
   };
 

@@ -13,7 +13,6 @@ import axios from "axios";
 function App() {
   const realEstateMockData = [];
   const [realEstateData, setRealEstateData] = useState(realEstateMockData);
-  const [counter, setCounter] = useState(5);
 
   useEffect(() => {
     axios
@@ -31,8 +30,6 @@ function App() {
       ...prevRealEstateData,
       newRealEstate,
     ]);
-
-    setCounter(counter + 1);
   };
 
   return (
@@ -52,19 +49,6 @@ function App() {
               }
             />
             <Route
-              path="/"
-              element={
-                <>
-                  {localStorage.getItem("evilla-user") ? (
-                    <Home realEstateData={realEstateData} />
-                  ) : (
-                    <Navigate to="/login" />
-                  )}
-                </>
-              }
-            />
-
-            <Route
               path="/add-estate"
               element={
                 localStorage.getItem("evilla-user") ? (
@@ -76,6 +60,19 @@ function App() {
             />
 
             <Route path="/book-meeting" element={<BookDeatilsPage />} />
+
+            <Route
+              path="/"
+              element={
+                <>
+                  {localStorage.getItem("evilla-user") ? (
+                    <Home realEstateData={realEstateData} />
+                  ) : (
+                    <Navigate to="/login" />
+                  )}
+                </>
+              }
+            />
             <Route path="/home" element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
