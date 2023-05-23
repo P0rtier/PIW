@@ -1,20 +1,13 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
 import "./loginPage.css";
 
 const LoginPage = () => {
-  const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const routeChange = () => {
-    let path = "/";
-    navigate(path);
-  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -48,7 +41,7 @@ const LoginPage = () => {
       localStorage.setItem("evilla-user", JSON.stringify(user));
       setUser(user);
 
-      routeChange();
+      window.location.reload(false);
     } else {
       setError("Invalid username or password!");
     }
