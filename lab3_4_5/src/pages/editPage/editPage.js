@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./editPage.css";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { RealEstateContext } from "../home/RealEstateContext";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../Firebase/Init";
@@ -50,7 +50,7 @@ const EditPage = () => {
     }
   };
 
-  return realEstateData ? (
+  return realEstateData.data.price !== "mock" ? (
     <div className="container">
       <div className="container-form">
         <div className="form-element">
@@ -108,7 +108,7 @@ const EditPage = () => {
     </div>
   ) : (
     <>
-      <div>Nothing to display!</div>
+      <Navigate to="/" />
     </>
   );
 };

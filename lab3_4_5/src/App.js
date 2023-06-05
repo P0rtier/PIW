@@ -82,7 +82,16 @@ function App() {
                 </>
               }
             />
-            <Route path="/edit-page" element={<EditPage />}></Route>
+            <Route
+              path="/edit-page"
+              element={
+                localStorage.getItem("user") ? (
+                  <EditPage />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            ></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/home" element={<Navigate to="/" />} />
           </Routes>
