@@ -20,15 +20,16 @@ const RealEstateFilter = ({ realEstateMockData }) => {
 
   const filteredData = realEstateMockData.filter((item) => {
     const isPriceMatched =
-      filterValues.price === "" || item.price.includes(filterValues.price);
+      filterValues.price === "" || item.data.price.includes(filterValues.price);
     const isBedroomsMatched =
       filterValues.bedrooms === "" ||
-      item.bedrooms === parseInt(filterValues.bedrooms);
+      item.data.bedrooms === parseInt(filterValues.bedrooms);
     const isCityMatched =
-      filterValues.city === "" || item.location.includes(filterValues.city);
+      filterValues.city === "" ||
+      item.data.location.includes(filterValues.city);
     const isDescriptionMatched =
       filterValues.description === "" ||
-      item.description.includes(filterValues.description);
+      item.data.description.includes(filterValues.description);
     return (
       isPriceMatched &&
       isBedroomsMatched &&
@@ -39,9 +40,9 @@ const RealEstateFilter = ({ realEstateMockData }) => {
 
   const sortedData = [...filteredData].sort((a, b) => {
     if (filterValues.sort === "asc") {
-      return parseInt(a.price) - parseInt(b.price);
+      return parseInt(a.data.price) - parseInt(b.data.price);
     } else if (filterValues.sort === "desc") {
-      return parseInt(b.price) - parseInt(a.price);
+      return parseInt(b.data.price) - parseInt(a.data.price);
     }
     return 0;
   });

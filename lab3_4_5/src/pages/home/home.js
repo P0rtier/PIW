@@ -8,7 +8,7 @@ const Home = ({ realEstateData }) => {
   const calculateNetWorth = useCallback(() => {
     let netWorth = 0;
     realEstateData
-      .map((elem) => elem.price)
+      .map((elem) => elem.data.price)
       .forEach((price) => {
         const priceValue = parseInt(price.slice(0, -3));
         netWorth += priceValue;

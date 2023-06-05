@@ -7,13 +7,7 @@ const RealEstateList = ({ realEstateMockData }) => {
     <div className="real-estate-list-container">
       <div className="list">
         {realEstateMockData.map((realEstateData, index) => (
-          <RealEstateObj
-            key={index}
-            price={realEstateData.price}
-            bedrooms={realEstateData.bedrooms}
-            location={realEstateData.location}
-            description={realEstateData.description}
-          />
+          <RealEstateObj key={index} realEstateDbData={realEstateData} />
         ))}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import exampleHouse from "../../../../assets/img/example-house.jpg";
 import "./realEstateObj.css";
 import { useNavigate } from "react-router-dom";
@@ -8,12 +8,19 @@ import {
   FaMapMarkerAlt,
   FaBookOpen,
 } from "react-icons/fa";
+import { RealEstateContext } from "../../RealEstateContext";
 
-const RealEstateObj = ({ price, bedrooms, location, description }) => {
+const RealEstateObj = ({ realEstateDbData }) => {
+  const { realEstateData, setRealEstateData } = useContext(RealEstateContext);
   const navigate = useNavigate();
   const routeChange = () => {
-    let path = "/book-meeting";
+    let path = "/edit-page";
     navigate(path);
+  };
+
+  const editEstate = () => {
+    setRealEstateData(realEstateDbData);
+    routeChange();
   };
   return (
     <div className="real-estate-container">
@@ -21,23 +28,23 @@ const RealEstateObj = ({ price, bedrooms, location, description }) => {
       <div className="real-estate-container__contents">
         <div className="flex contents-price">
           <FaDollarSign style={{ marginTop: "7px" }} />
-          <p>{price}</p>
+          <p>{realEstateDbData.data.price}</p>
         </div>
         <div className="flex contents-bedrooms">
           <FaBed style={{ marginTop: "5px" }} />
-          <p>{bedrooms}</p>
+          <p>{realEstateDbData.data.bedrooms}</p>
         </div>
         <div className="flex contents-location">
           <FaMapMarkerAlt style={{ marginTop: "5px" }} />
-          <p>{location}</p>
+          <p>{realEstateDbData.data.location}</p>
         </div>
         <div className="flex contents-desc">
           <FaBookOpen style={{ marginTop: "5px" }} />
-          <p>{description}</p>
+          <p>{realEstateDbData.data.description}</p>
         </div>
         <div className="flex contents-details">
-          <button className="btn btn-success" onClick={routeChange}>
-            Book
+          <button className="btn btn-success" onClick={editEstate}>
+            Edit
           </button>
         </div>
       </div>

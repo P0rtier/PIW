@@ -7,71 +7,87 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import BookDeatilsPage from "./pages/bookPage/bookDetailsPage";
 import LoginPage from "./pages/loginPage/loginPage";
-import axios from "axios";
 import Register from "./pages/registerPage/Register";
+import { db } from "./Firebase/Init";
+import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import EditPage from "./pages/editPage/editPage";
+import { RealEstateProvider } from "./pages/home/RealEstateContext";
 
 function App() {
   const realEstateMockData = [];
   const [realEstateData, setRealEstateData] = useState(realEstateMockData);
 
   useEffect(() => {
-    axios
-      .get("/estate_data/estate.json")
-      .then((response) => {
-        setRealEstateData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error occured, stacktrace: ", error);
-      });
+    const realEstateDbData = collection(db, "real_estates");
+    const unsubscribe = onSnapshot(realEstateDbData, (snapshot) => {
+      const realEstates = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+      setRealEstateData(realEstates);
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const handleNewRealEstateSubmit = (newRealEstate) => {
-    setRealEstateData((prevRealEstateData) => [
-      ...prevRealEstateData,
-      newRealEstate,
-    ]);
+    const realEstateDbData = collection(db, "real_estates");
+    addDoc(realEstateDbData, newRealEstate)
+      .then(console.log("Dodalem"))
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
     <div className="App">
-      <Navbar />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              localStorage.getItem("user") ? <Navigate to="/" /> : <LoginPage />
-            }
-          />
-          <Route
-            path="/add-estate"
-            element={
-              localStorage.getItem("user") ? (
-                <AddEstatePage addRealEstate={handleNewRealEstateSubmit} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
-
-          <Route path="/book-meeting" element={<BookDeatilsPage />} />
-
-          <Route
-            path="/"
-            element={
-              <>
-                {localStorage.getItem("user") ? (
-                  <Home realEstateData={realEstateData} />
+      <RealEstateProvider>
+        <Navbar />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/login"
+              element={
+                localStorage.getItem("user") ? (
+                  <Navigate to="/" />
+                ) : (
+                  <LoginPage />
+                )
+              }
+            />
+            <Route
+              path="/add-estate"
+              element={
+                localStorage.getItem("user") ? (
+                  <AddEstatePage addRealEstate={handleNewRealEstateSubmit} />
                 ) : (
                   <Navigate to="/login" />
-                )}
-              </>
-            }
-          />
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/home" element={<Navigate to="/" />} />
-        </Routes>
-      </BrowserRouter>
+                )
+              }
+            />
+
+            <Route path="/book-meeting" element={<BookDeatilsPage />} />
+
+            <Route
+              path="/"
+              element={
+                <>
+                  {localStorage.getItem("user") ? (
+                    <Home realEstateData={realEstateData} />
+                  ) : (
+                    <Navigate to="/login" />
+                  )}
+                </>
+              }
+            />
+            <Route path="/edit-page" element={<EditPage />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/home" element={<Navigate to="/" />} />
+          </Routes>
+        </BrowserRouter>
+      </RealEstateProvider>
     </div>
   );
 }
